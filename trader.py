@@ -15,9 +15,9 @@ class StockData:
         self.price_history = None
         self.get_price_data()
 
-    def get_price_data(self, granularity='15m', days_ago=30):
+    def get_price_data(self, granularity='1d', days_ago=365):
         today = datetime.date.today()
-        start_date = today - datetime.timedelta(days=days_ago)
+        start_date = today - datetime.timedelta(days=int(days_ago))
         self.price_history = self.raw_data.history(start=start_date, end=today, interval=granularity)
 
     def generate_graph(self, x_axis="High"):
